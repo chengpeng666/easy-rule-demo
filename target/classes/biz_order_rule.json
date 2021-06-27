@@ -1,0 +1,28 @@
+[
+  {
+    "name":"order_type_rule",
+    "description":"订单类型规则引擎",
+    "priority":1,
+    "compositeRuleType":"ActivationRuleGroup",
+    "composingRules":[
+      {
+        "name":"ordinary_order_rule",
+        "description":"普通订单类型",
+        "condition":"param.getType().equals(1)",
+        "priority":1,
+        "actions":[
+          "System.out.println(\"这是一个普通订单\")"
+        ]
+      },
+      {
+        "name":"discount_order_rule",
+        "description":"折扣类型规则",
+        "condition":"param.getType().equals(2)",
+        "priority":2,
+        "actions":[
+          "OrderService.doDiscountAction(param)"
+        ]
+      }
+    ]
+  }
+]
